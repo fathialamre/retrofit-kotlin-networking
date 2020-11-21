@@ -6,5 +6,7 @@ data class Note(
     @SerializedName("title")
     var title: String? = null,
     @SerializedName("body")
-    var body: String? = null
+    var body: String? = null,
+    @SerializedName("picture_url")
+    var pictureUrl: String? = null
 )

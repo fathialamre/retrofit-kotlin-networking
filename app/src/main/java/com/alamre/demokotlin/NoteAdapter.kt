@@ -1,28 +1,35 @@
 package com.alamre.demokotlin
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_item.view.*
+import com.bumptech.glide.Glide
+
 
 class NoteAdapter(private val noteList: List<Note>) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.note_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.note_list_item,
+            parent,
+            false
+        )
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+
+        val imgURI: String = noteList[position].pictureUrl.toString()
+
         holder.note = noteList[position]
         holder.txtNote.text = noteList[position].title
         holder.txtBody.text = noteList[position].body
+        Glide.with(holder.itemView.context).load(imgURI).into(holder.imgView)
 
 //        holder.itemView.setOnClickListener { v ->
 //            val context = v.context
@@ -41,6 +48,7 @@ class NoteAdapter(private val noteList: List<Note>) : RecyclerView.Adapter<NoteA
 
         val txtNote: TextView = itemView.findViewById(R.id.txtTitle)
         val txtBody: TextView = itemView.findViewById(R.id.txtBody)
+        val imgView: ImageView = itemView.findViewById(R.id.imageView)
         var note: Note? = null
 
         override fun toString(): String {

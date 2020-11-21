@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
 
-    private const val URL = "http://192.168.0.101/alamre/simplenote/public/"
+    private const val URL = "http://192.168.0.101/alamre/simplenote/public/api/"
 
     private val okHttpClient = OkHttpClient.Builder()
 

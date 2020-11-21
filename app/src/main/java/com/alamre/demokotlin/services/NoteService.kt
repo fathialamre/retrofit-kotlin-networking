@@ -7,10 +7,10 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface NoteService {
-    @GET("api/")
+    @GET("notes/")
     fun getNotes(): Call<List<Note>>
 
-    @POST("api/create")
+    @POST("notes/add")
     fun addNote(@Body newNote: Note) : Call<Note>
 
 }

@@ -3,19 +3,17 @@ package com.alamre.demokotlin
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alamre.demokotlin.activities.CreateNoteActivity
+import com.alamre.demokotlin.helpers.LoadingDialog
 import com.alamre.demokotlin.services.NoteService
 import com.alamre.demokotlin.services.ServiceBuilder
-import com.google.android.material.snackbar.Snackbar
+import com.github.ybq.android.spinkit.style.DoubleBounce
 import kotlinx.android.synthetic.main.notes_activity.*
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.security.auth.callback.Callback
 
 class NotesActivity : AppCompatActivity() {
 
@@ -42,9 +40,19 @@ class NotesActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
+
+//        val progressBar: ProgressBar = findViewById(R.id.spin_kit);
+//        val doubleBounce = DoubleBounce()
+//        progressBar.indeterminateDrawable = doubleBounce;
+
+        val loader = LoadingDialog.progressDialog(this)
+        loader.show()
         noteService.getNotes().enqueue(object : retrofit2.Callback<List<Note>> {
             override fun onResponse(call: Call<List<Note>>, response: Response<List<Note>>) {
-                showData(response.body()!!)
+                if (response.isSuccessful){
+                    loader.dismiss()
+                    showData(response.body()!!)
+                }
             }
 
             override fun onFailure(call: Call<List<Note>>, t: Throwable) {

@@ -19,14 +19,12 @@ class CreateNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_note_activity)
 
-
+        println("call")
 
         val fab: View = findViewById(R.id.btnAdd)
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
+            print("aaaaaa")
             insertNote()
-            Snackbar.make(view, "Note Inserted Successfully", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .show()
         }
     }
 
@@ -34,9 +32,10 @@ class CreateNoteActivity : AppCompatActivity() {
         val note = Note()
         note.title = txtTitle.text.toString();
         note.body  = txtBody.text.toString();
-
+            print("aaaaaa")
         noteService.addNote(note).enqueue(object : retrofit2.Callback<Note> {
             override fun onResponse(call: Call<Note>, response: Response<Note>) {
+                print(response.body())
                 finish()
             }
 
