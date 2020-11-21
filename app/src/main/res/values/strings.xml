@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">demokotlin</string>
+    <string name="login">Login</string>
+    <string name="Username">Username</string>
+    <string name="share">Share</string>
+    <string name="recicler_view">Recycler View</string>
+    <string name="recycler_view">Recycler View</string>
+    <string name="textview">TextView</string>
+    <string name="kotlin">Kotlin</string>
+    <string name="add">add</string>
+    <string name="save">Save</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+</resources>
